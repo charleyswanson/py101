@@ -1,4 +1,4 @@
-# For a challenging but fun exercise, try word wrapping messages that are too long to fit, so that they appear on multiple lines but are still contained within the box. This isn't an easy problem, but it's doable with basic Python.
+# this never worked :/
 
 def print_in_box(str, box_width = float('inf')):
     if box_width < len(str):                        # box is narrower than str

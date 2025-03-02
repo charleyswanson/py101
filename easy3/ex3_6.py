@@ -12,37 +12,36 @@ def print_in_box(str, box_width = float('inf')):
         word_list = str.split()
         line_to_print = '|'
         index = 0
-        word = word_list[0]
 
         while index < len(word_list) - 1:
-            while len(line_to_print) + len(word) < box_width - 2:
-                line_to_print = line_to_print + ' ' + word
-                # print(f'{line_to_print}')
-                index += 1
-                word = word_list[index]
-                # print(f'                index: {index} / word: {word}')
-            print(f'{line_to_print} !')
-
-            if index < len(word_list) - 1:
-                line_to_print = "| " + word
-                index += 1
-                # print(index)
-                word = word_list[index]
-                # print(f'                INDEX: {index} / WORD: {word}')
             
-        line_to_print = line_to_print + ' ' + word
-        print(index)
-
-        if index != len(word_list) - 1:
-            if len(line_to_print) < box_width - 2:
-                print(f'{line_to_print} |')
+            # assemble a line to print, as long as it's not the last word
+            while len(line_to_print) + len(word_list[index]) < box_width - 2:
+                if index < len(word_list) - 1:
+                    word = word_list[index]
+                    line_to_print = line_to_print + ' ' + word
+                    index += 1
+                else:
+                    break
+            
+            # handling the last word in the list; one line or two
+            if index == len(word_list) - 1:
+                word = word_list[index]
+                if len(line_to_print) + len(word_list[index]) < box_width - 2:
+                    extra_spaces = box_width - len(f'{line_to_print} {word} +')
+                    print(f'{line_to_print} {word} {extra_spaces * ' '}|')
+                else:
+                    extra_spaces = box_width - len(f'{line_to_print} |')
+                    print(f'{line_to_print} {extra_spaces * ' '}|')
+                    extra_spaces = box_width - len(f'| {word} |')
+                    print(f'| {word} {extra_spaces * ' '}|')
+            
+            # print the assembled line
             else:
-                end_list = line_to_print.split()
-                last_word = end_list.pop()
-                print(' '.join(end_list))
-                print(f'| {last_word} |')
+                extra_spaces = box_width - len(f'{line_to_print} |')
+                print(f'{line_to_print} {extra_spaces * ' '}|')
+            line_to_print = '|'
 
-# To boldly go where no one has gone before. Really, ever.
 # -----------------------------------------
 
         print(blank_line)
@@ -58,7 +57,5 @@ def print_in_box(str, box_width = float('inf')):
         print(blank_line)
         print(horiz_line)
 
-# print_in_box('To boldly go. Really, ever.', 20)
-
-print_in_box('To boldly go where no one has gone before. Really, ever.', 30)
-# print_in_box('T o b o l wd xhwy gxxxxxxx o w h e r e n o o n e h a s g o n , e v e r.', 20)
+print_in_box('To boldly go where no one has gone before. Really, ever.', 28)
+# print_in_box('T o b o l wd xhdswy gxxxxxxx o w h e r e n o o n e h a s g o n , e v e r.', 25)

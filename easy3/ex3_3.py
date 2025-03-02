@@ -15,4 +15,4 @@ def print_in_box(str, box_width = float('inf')):
     print(blank_line)
     print(horiz_line)
 
-print_in_box('To boldly go where no one has gone before.', 25)
+print_in_box('To boldly go where no one has gone before.', 40)
