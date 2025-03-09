@@ -1,0 +1,9 @@
+{
+    "welcome": "Welcome to this simple calculator.",
+    "num1": "First number:",
+    "num2": "Second number:",
+    "invalid_num": "That's not a valid number, please try again.",
+    "operation": "What would you like to do with them?\n1: Add  2: Subtract  3: Multiply  4: Divide",
+    "invalid_operation": "Please enter 1, 2, 3 or 4:",
+    "answer": "f'The answer is {answer}'"
+}
