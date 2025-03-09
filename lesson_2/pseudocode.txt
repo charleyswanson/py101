@@ -1,0 +1,95 @@
+** a function that returns the sum of two numbers
+
+Get two numbers from user
+Add numbers together
+Print the sum
+
+    START
+
+    GET num1 and num2
+    SET answer = num1 + num2
+
+    PRINT answer
+
+__________
+
+** a function that takes a list of strings, and returns a string that is all those strings concatenated together
+
+Set a variable = an empty string
+Iterate through strings in the list
+For each string in the list, append to the new string/variable
+Print the new string
+
+    START
+
+    SET list = list of strings
+    SET new_string = ''
+    SET iterator = 0
+
+    WHILE iterator < length of list
+        SET new_string = new_string + list[iterator]
+
+        iterator = iterator + 1
+
+    PRINT new_string
+
+__________
+
+** a function that takes a list of integers, and returns a new list with every other element from the original list, starting with the first element. For instance:
+
+every_other([1,4,7,2,5]) # => [1,7,5]
+
+Create a new, empty list
+Iterate through every other item in the original list
+Append the current item to the new list
+Print the new list
+
+    SET new_list = []
+    SET iterator = 0
+
+    WHILE iterator < length of original list
+        SET new_list = new_list.append(original list[iterator])
+
+        iterator = iterator + 2
+
+__________
+
+** a function that determines the index of the 3rd occurrence of a given character in a string. For instance, if the given character is 'x' and the string is 'axbxcdxex', the function should return 6 (the index of the 3rd 'x'). If the given character does not occur at least 3 times, return None.
+
+Create a counter variable to keep track of instances of given character
+Iterate through the given string and check each character against the given one
+When a match is found, add one to the counter variable
+When the counter variable reaches 3, return the index
+If the counter doesn't reach 3, return None
+
+    SET iterator = 0
+    SET counter = 0
+
+    WHILE iterator < length of string
+        IF counter < 2
+            IF char == string[iterator]
+                counter = counter + 1
+        ELIF counter = 2
+            IF char == string[iterator]
+                PRINT iterator
+
+    PRINT None
+
+__________
+
+** a function that takes two lists of numbers and returns the result of merging the lists. The elements of the first list should become the elements at the even indexes of the returned list, while the elements of the second list should become the elements at the odd indexes. For instance:
+
+merge([1, 2, 3], [4, 5, 6]) # => [1, 4, 2, 5, 3, 6]
+
+Create a new list
+Iterate through each of the two given lists
+Add an element from each of the given lists to the new list
+
+    SET iterator = 0
+    SET new_list = []
+
+    WHILE iterator < length of list1
+        SET new_list = new_list.append(list1[iterator])
+        SET new_list = new_list.append(list2[iterator])
+
+PRINT new_list
