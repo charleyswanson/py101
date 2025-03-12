@@ -1,0 +1,8 @@
+{
+    "msg_welcome": "Let's figure out your monthly loan payment.",
+    "msg_loan_amount": "How much is your loan?",
+    "msg_invalid_int": "Please enter only numbers.",
+    "msg_apr": "What's the annual percentage rate? (e.g., 5.4)",
+    "msg_invalid_float": "Please only enter numbers and a decimal point.",
+    "msg_duration": "What is the loan's duration in months?"
+}
