@@ -1,8 +1,13 @@
 {
     "msg_welcome": "Let's figure out your monthly loan payment.",
+    "msg_inputs": "We'll need the loan amount, APR, and duration.",
     "msg_loan_amount": "How much is your loan?",
-    "msg_invalid_int": "Please enter only numbers.",
+    "msg_invalid_int": "Please enter a number more than zero.",
     "msg_apr": "What's the annual percentage rate? (e.g., 5.4)",
-    "msg_invalid_float": "Please only enter numbers and a decimal point.",
-    "msg_duration": "What is the loan's duration in months?"
+    "msg_invalid_float": "Please only enter positive numbers and a decimal point.",
+    "msg_duration": "What is the loan's duration in months?",
+    "msg_invalid_duration": "What is the loan's duration in months?",
+    "msg_calculate_again": "Would you like to run another set of numbers? (y to continue)",
+    "msg_end_thanks": "Thanks for using the calculator! Hope it was helpful."
+
 }
