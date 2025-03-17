@@ -39,6 +39,7 @@ while True:
     clear_screen()
     prompt(MESSAGES['msg_welcome'])
     prompt(MESSAGES['msg_inputs'])
+
     # get loan amount, verify input, convert to integer
     print()
     prompt(MESSAGES['msg_loan_amount'])
@@ -85,11 +86,9 @@ while True:
 
     print()
     prompt(MESSAGES['msg_calculate_again'])
-    
+
     again = input()
     if not again or again[0].lower() != 'y':
         prompt(MESSAGES['msg_end_thanks'])
+        print()
         break
-    # if again[0].lower() != 'y':
-    #     prompt(MESSAGES['msg_end_thanks'])
-    #     break
