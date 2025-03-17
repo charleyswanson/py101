@@ -119,5 +119,4 @@ def run_calculator():
 
         clear_screen()
 
-
 run_calculator()
