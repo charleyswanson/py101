@@ -84,14 +84,20 @@ def scoring(_winner):
 def best_of_five_winner():
     if score_card['user'] == 3:
         prompt('You win the best of five!')
+        return False
     elif score_card['computer'] == 3:
         prompt('Computer wins the best of five!')
+        return False
+    else:
+        return True
 
 
-score_card = {'user': 2, 'computer': 2, 'ties': 0}
+score_card = {'user': 1, 'computer': 1, 'ties': 0}
 
-while True:
-    clear_screen()
+continue_best_of_five = True
+
+while continue_best_of_five:
+    # clear_screen()
 
     prompt("Let's play best of five - first one to three wins the game!")
     print()
@@ -110,7 +116,9 @@ while True:
     display_winner(winner)
     scoring(winner)
 
-    best_of_five_winner()
+    best_of_five_winner
+    continue_best_of_five = best_of_five_winner()
+    print(repr(continue_best_of_five))
 
     print()
     prompt('Want to keep going on the best of five? (y/n)')
