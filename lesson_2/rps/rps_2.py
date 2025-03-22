@@ -3,6 +3,7 @@ import platform
 import random
 
 VALID_CHOICES = ['rock', 'paper', 'scissors', 'spock', 'lizard']
+VALID_SHORT_CHOICES = ['r', 'p', 'sc', 'sp', 'l']
 
 def clear_screen():
     if platform.system() == "Windows":
@@ -13,12 +14,33 @@ def clear_screen():
 def prompt(message):
     print(f'>-- {message}')
 
+def validate_user_choice(choice):
+    while (
+        choice not in VALID_CHOICES
+        and choice not in VALID_SHORT_CHOICES):
+        prompt(f'Please choose: {", ".join(VALID_CHOICES)}.')
+        prompt(f'Or: {", ".join(VALID_SHORT_CHOICES)}.')
+        choice = input()
+
+    return choice
+
+def convert_short_input(choice):
+    match choice:
+        case 'r':
+            return 'rock'
+        case 'p':
+            return 'paper'
+        case 'sc':
+            return 'scissors'
+        case 'sp':
+            return 'spock'
+        case 'l':
+            return 'lizard'
+
 def display_winner (user, computer):
     if user == computer:
-        print(f'user: {user} / computer: {computer}')
         prompt(f'You both chose {user}.')
     else:
-        print(f'user: {user} / computer: {computer}')
         prompt(f'You chose {user} and the computer chose {computer}.')
 
     if ((user == 'rock' and computer in ['scissors', 'lizard'])
@@ -36,18 +58,22 @@ def display_winner (user, computer):
     else:
         prompt('Tie game.')
 
+
 while True:
     clear_screen()
 
     prompt(f"Let's play! Please choose: {", ".join(VALID_CHOICES)}.")
+    prompt(f"You can enter full words or: {", ".join(VALID_SHORT_CHOICES)}.")
     user_choice = input()
 
-    while user_choice not in VALID_CHOICES:
-        prompt(f'Please choose: {", ".join(VALID_CHOICES)}.')
-        user_choice = input()
+    user_choice = validate_user_choice(user_choice)
+
+    if 1 <= len(user_choice) <= 2:
+        user_choice = convert_short_input(user_choice)
 
     computer_choice = random.choice(VALID_CHOICES)
 
+    print()
     display_winner(user_choice, computer_choice)
 
     print()
