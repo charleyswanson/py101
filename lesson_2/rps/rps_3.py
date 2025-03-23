@@ -12,7 +12,7 @@ def clear_screen():
         os.system('clear')
 
 def prompt(message):
-    print(f'>-- {message}')
+    print(f'--> {message}')
 
 def validate_user_choice(choice):
     while (
@@ -20,7 +20,7 @@ def validate_user_choice(choice):
         and choice not in VALID_SHORT_CHOICES):
         prompt(f'Please choose: {", ".join(VALID_CHOICES)}.')
         prompt(f'Or: {", ".join(VALID_SHORT_CHOICES)}.')
-        choice = input()
+        choice = input().lower()
 
     return choice
 
@@ -38,7 +38,6 @@ def convert_short_input(choice):
             return 'lizard'
 
 def choose_winner(user, computer):
-    print()
     if user == computer:
         prompt(f'You both chose {user}.')
     else:
@@ -62,9 +61,9 @@ def choose_winner(user, computer):
 def display_winner(_winner):
     match _winner:
         case 'user':
-            prompt('You win!')
+            prompt('You won that round.')
         case 'computer':
-            prompt('The computer wins.')
+            prompt('The computer won that round.')
         case 'tie':
             prompt('Tie game.')
 
@@ -77,51 +76,63 @@ def scoring(_winner):
             score_card['computer'] += 1
         case 'tie':
             score_card['ties'] += 1
-    prompt (f'You: {score_card['user']}, '
-            f'Computer: {score_card['computer']} '
-            f'({score_card['ties']} ties)')
+
+    if score_card['user'] < 3 and score_card['computer'] < 3:
+        if score_card['ties'] == 1:
+            prompt (f"Score: You've won {score_card['user']} / "
+                f"The computer has won {score_card['computer']}  "
+                f"({score_card['ties']} tie)")
+        else:
+            prompt (f"Score: You've won {score_card['user']} / "
+                f"The computer has won {score_card['computer']} "
+                f"({score_card['ties']} ties)")
+
+def display_final_score():
+    prompt(f'Final score = You: {score_card['user']} / '
+        f'Computer: {score_card['computer']}')
 
 def best_of_five_winner():
     if score_card['user'] == 3:
-        prompt('You win the best of five!')
+        prompt('You won the best of five!')
+        display_final_score()
         return False
     elif score_card['computer'] == 3:
-        prompt('Computer wins the best of five!')
+        prompt('The computer won the best of five.')
+        display_final_score()
         return False
     else:
         return True
 
-
-score_card = {'user': 1, 'computer': 1, 'ties': 0}
-
+score_card = {'user': 0, 'computer': 0, 'ties': 0}
 continue_best_of_five = True
 
-while continue_best_of_five:
-    # clear_screen()
+clear_screen()
+prompt("Best of five - first one to three wins the game!")
+print()
 
-    prompt("Let's play best of five - first one to three wins the game!")
-    print()
-    prompt(f"Please choose: {", ".join(VALID_CHOICES)}.")
-    prompt(f"You can enter full words or: {", ".join(VALID_SHORT_CHOICES)}.")
-    user_choice = input()
+while True:
+    while continue_best_of_five:
+        prompt(f"Please choose: {", ".join(VALID_CHOICES)}.")
+        prompt(f"You can enter full words or: "
+               f"{", ".join(VALID_SHORT_CHOICES)}.")
+        user_choice = input().lower()
 
-    user_choice = validate_user_choice(user_choice)
+        user_choice = validate_user_choice(user_choice)
 
-    if 1 <= len(user_choice) <= 2:
-        user_choice = convert_short_input(user_choice)
+        if 1 <= len(user_choice) <= 2:
+            user_choice = convert_short_input(user_choice)
 
-    computer_choice = random.choice(VALID_CHOICES)
+        computer_choice = random.choice(VALID_CHOICES)
 
-    winner = choose_winner(user_choice, computer_choice)
-    display_winner(winner)
-    scoring(winner)
+        clear_screen()
+        winner = choose_winner(user_choice, computer_choice)
+        display_winner(winner)
+        scoring(winner)
 
-    best_of_five_winner
-    continue_best_of_five = best_of_five_winner()
-    print(repr(continue_best_of_five))
+        continue_best_of_five = best_of_five_winner()
+        print()
 
-    print()
-    prompt('Want to keep going on the best of five? (y/n)')
+    prompt('Want to play again? (y/n)')
     play_again = input().lower()
 
     while True:
@@ -133,3 +144,7 @@ while continue_best_of_five:
 
     if play_again[0] == 'n':
         break
+    
+    score_card = {'user': 0, 'computer': 0, 'ties': 0}
+    continue_best_of_five = True
+    clear_screen()
