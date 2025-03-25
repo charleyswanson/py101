@@ -74,14 +74,10 @@ def scoring(_winner):
             score_card['ties'] += 1
 
     if score_card['user'] < 3 and score_card['computer'] < 3:
-        if score_card['ties'] == 1:
-            prompt (f"Score: You've won {score_card['user']} / "
-                f"The computer has won {score_card['computer']}  "
-                f"({score_card['ties']} tie)")
-        else:
-            prompt (f"Score: You've won {score_card['user']} / "
-                f"The computer has won {score_card['computer']}  "
-                f"({score_card['ties']} ties)")
+        prompt(f"Score: You've won {score_card['user']} / "
+            f"The computer has won {score_card['computer']} "
+            f"({score_card['ties']} "
+            f"{'tie' if score_card['ties'] == 1 else 'ties'})")
 
 def display_final_score():
     prompt(f'Final score = You: {score_card['user']} / '
