@@ -12,20 +12,32 @@
 # ==> 3.141592 % 2.718282 = 0.42324699999999993
 # ==> 3.141592 ** 2.718282 = 22.45792517468373
 
-num1 = float(input('==> Enter the first number:\n'))
-num2 = float(input('==> Enter the second number:\n'))
+def operation(current_operator):
+    match current_operator:
+        case '+':
+            return num1 + num2
+        case '-':
+            return num1 - num2
+        case '*':
+            return num1 * num2
+        case '/':
+            return num1 / num2
+        case '//':
+            return num1 // num2
+        case '%':
+            return num1 % num2
+        case '**':
+            return num1 ** num2
 
 operators = ['+', '-', '*', '/', '//', '%', '**']
 
+num1 = float(input('==> Enter the first number:\n'))
+num2 = float(input('==> Enter the second number:\n'))
+
 for operator in operators:
     if len(operator) == 1:
-        space = 2
+        space = "  "
     else:
-        space = 1
-    result = eval(f'{num1}{operator}{num2}')
-    print(f'==> {num1} {operator}{" " * space}{num2} = {result}')
-
-# print(f'==> {num1} + {num2} = {num1 + num2}')
-# print(f'==> {num1} - {num2} = {num1 - num2}')
-# print(f'==> {num1} * {num2} = {num1 * num2}')
-# print(f'==> {num1} / {num2} = {num1 / num2}')
+        space = " "
+    result = operation(operator)
+    print(f'==> {num1} {operator}{space}{num2} = {result}')
